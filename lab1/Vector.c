@@ -11,33 +11,33 @@
 
 struct Vector3 *the_zero = NULL;
 
-/*
-struct Vector3 *zero(struct RingInfo ri) {
-    if (!the_zero) {
-        int zero_val = 0;
-        the_zero = malloc(sizeof(struct Vector3));
-        the_zero->x = ri->new(&zero_val);
-        the_zero->y = ri->new(&zero_val);
-        the_zero->z = ri->new(&zero_val);
-    }
-    return the_zero;
-};*/
 
-// v=Sum(a,b,ri->sum);
+void* mult(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri){
+    struct Vector3* res = malloc((sizeof(struct Vector3)));
+    res->x = ri->mult(v1->x, v2->x);
+    res->y = ri->mult(v1->y, v2->y);
+    res->z = ri->mult(v1->z, v2->z);
+    return  res;
+};
 
-/*
-struct Vector3* Sum(struct Vector31* v1, struct Vector31* v2, void* (*sum)(void*,void*))
-{
-    struct Vector3* result = malloc(sizeof(struct Vector3));
-    result->x = sum(v1->x, v2->x);
-    result->y = sum(v1->y, v2->y);
-    result->z = sum(v1->z, v2->z);
-    return result;
-}*/
+struct Vector3* sum_vec(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri){
+    struct Vector3* res = malloc(sizeof(struct Vector3));
+    res->x=ri->sum(v1->x, v2->x);
+    res->y=ri->sum(v1->y, v2->y);
+    res->z=ri->sum(v1->z, v2->z);
+    return res;
+}
+
+struct Vector3* mult_sc(struct Vector3*v1, struct Vector3*v2, struct RingInfo *ri){
+    struct Vector3* temp_res = mult(v1, v2, ri);
+    void* res = ri->sum(temp_res->x, temp_res->y);
+    res = ri->sum(res, temp_res->z);
+    return res;
+}
 
 
 void raise(char *s) {
-    fprintf(stderr, "error: %s strerror:%s", s, strerror(errno));
+    fprintf(stderr, "error: %s\n strerror:\n%s", s, strerror(errno));
     exit(1);
 }
 
@@ -86,21 +86,37 @@ struct vectors *from_file(char *file_name, struct RingInfo *ri) {
         new_vector->x = vx;
         new_vector->y = vy;
         new_vector->z = vz;
-        vs->v3s[vs->len] = new_vector;
+        vs->v3s[vs->len-1] = new_vector;
     }
+}
+void print_val(void * v, struct RingInfo* ri){
+    if(v==NULL){
+        return;
+    }
+    char *res = ri->valtostr(v);
+    printf("%s", res);
+    free(res);
+    return;
+}
+
+void print_v3(struct  Vector3*vs, struct RingInfo *ri){
+    if(vs == NULL){
+        return;
+    };
+    char *vx = ri->valtostr(vs->x);
+    char *vy = ri->valtostr(vs->y);
+    char *vz = ri->valtostr(vs->z);
+    printf("%s %s %s\n", vx, vy, vz);
+    free(vx);
+    free(vy);
+    free(vz);
 }
 
 void print_v( struct vectors *vs){
     if(vs==NULL){
         return ;
     }
-    for(int i =1; i<=vs->len;i++){
-        char *vx = vs->ringInfo->valtostr(vs->v3s[i]->x);
-        char *vy = vs->ringInfo->valtostr(vs->v3s[i]->y);
-        char *vz = vs->ringInfo->valtostr(vs->v3s[i]->z);
-        printf("%s %s %s\n", vx, vy, vz);
-        free(vx);
-        free(vy);
-        free(vz);
+    for(int i =0; i<vs->len;i++){
+        print_v3(vs->v3s[i], vs->ringInfo);
     }
 }
