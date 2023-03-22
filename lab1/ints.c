@@ -36,8 +36,10 @@ void* mult_int(void* a1,void* a2){
 }
 
 void *str_to_val_int(char *str){
-    long res=strtol(str,NULL,10);
-    if (res==LONG_MAX||res==LONG_MIN) {
+    char *end_ptr=NULL;
+
+    long res=strtol(str,&end_ptr,10);
+    if (end_ptr==NULL || *end_ptr!='\0') {
         // out of bounds or wrong characters in string
         return NULL;
     }
