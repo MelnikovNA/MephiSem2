@@ -23,18 +23,8 @@ struct vectors{
     struct Vector3 **v3s;
 };
 
-struct Vector3* E_1(struct RingInfo* ringInfo);
-struct Vector3* E_2(struct RingInfo* ringInfo);
-struct Vector3* E_3(struct RingInfo* ringInfo);
-struct Vector3* Zero(struct RingInfo* ringInfo);
-struct Vector3* From(struct RingInfo* ringInfo, int* values);
-
-void *GetX(struct Vector3* vect);
-void *GetY(struct Vector3* vect);
-void *GetZ(struct Vector3* vect);
-
 struct vectors *from_file(char *file_name, struct RingInfo *ri);
-void print_v(struct RingInfo *ri, struct vectors *vs);
+void print_v( struct vectors *vs);
 
 struct Vector3* sum(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);
 void* mult(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);

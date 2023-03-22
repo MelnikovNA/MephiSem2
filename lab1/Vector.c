@@ -90,14 +90,14 @@ struct vectors *from_file(char *file_name, struct RingInfo *ri) {
     }
 }
 
-void print_v(struct RingInfo *ri, struct vectors *vs){
+void print_v( struct vectors *vs){
     if(vs==NULL){
         return ;
     }
     for(int i =1; i<=vs->len;i++){
-        char *vx = ri->valtostr(vs->v3s[i]->x);
-        char *vy = ri->valtostr(vs->v3s[i]->y);
-        char *vz = ri->valtostr(vs->v3s[i]->z);
+        char *vx = vs->ringInfo->valtostr(vs->v3s[i]->x);
+        char *vy = vs->ringInfo->valtostr(vs->v3s[i]->y);
+        char *vz = vs->ringInfo->valtostr(vs->v3s[i]->z);
         printf("%s %s %s\n", vx, vy, vz);
         free(vx);
         free(vy);
