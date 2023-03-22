@@ -3,14 +3,13 @@
 //
 
 #ifndef MEPHISEM2_VECTOR_INTS_H
-void* new_int(void*);
+#define MEPHISEM2_VECTOR_INTS_H
 
+void* new_int(void*);
 void* sum_int(void*, void*);
-void* minus_int(void*);
+//void* minus_int(void*);
 void* mult_int(void*,void*);
 char *val_to_str_int(void *v);
 void *str_to_val_int(char *str);
-
-#define MEPHISEM2_VECTOR_INTS_H
 
 #endif //MEPHISEM2_VECTOR_INTS_H

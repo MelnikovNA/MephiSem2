@@ -20,12 +20,12 @@ void* sum_int(void* a1, void* a2){
     return (void*) res;
 }
 
-void* minus_int(void* a1){
+/*void* minus_int(void* a1){
     int* el = (int*)a1;
     int*res = malloc(sizeof(int));
     *res = *el* (-1);
     return (void*)res;
-}
+}*/
 
 void* mult_int(void* a1,void* a2){
     int* el1 = (int*)a1;
@@ -36,16 +36,10 @@ void* mult_int(void* a1,void* a2){
 }
 
 void *str_to_val_int(char *str){
+    errno=0;
     char *end_ptr=NULL;
-
     long res=strtol(str,&end_ptr,10);
-    if (end_ptr==NULL || *end_ptr!='\0') {
-        // out of bounds or wrong characters in string
-        return NULL;
-    }
-
-    if (res>INT_MAX||res<INT_MIN){
-        // value is too long
+    if (errno==EINVAL){
         return NULL;
     }
     int v=(int)res;

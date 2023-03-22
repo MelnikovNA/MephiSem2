@@ -9,9 +9,6 @@
 #include "RingInfo.h"
 #include "Vector.h"
 
-struct Vector3 *the_zero = NULL;
-
-
 void* mult(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri){
     struct Vector3* res = malloc((sizeof(struct Vector3)));
     res->x = ri->mult(v1->x, v2->x);
@@ -94,7 +91,7 @@ void print_val(void * v, struct RingInfo* ri){
         return;
     }
     char *res = ri->valtostr(v);
-    printf("%s", res);
+    printf("%s\n", res);
     free(res);
     return;
 }

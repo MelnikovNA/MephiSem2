@@ -73,6 +73,12 @@ build CMakeFiles/lab1.dir/ints.c.obj: C_COMPILER__lab1_Debug C$:/Cprog/MephiSem2
   OBJECT_DIR = CMakeFiles\lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\lab1.dir
 
+build CMakeFiles/lab1.dir/double.c.obj: C_COMPILER__lab1_Debug C$:/Cprog/MephiSem2/lab1/double.c || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles\lab1.dir\double.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\lab1.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab1
@@ -81,7 +87,7 @@ build CMakeFiles/lab1.dir/ints.c.obj: C_COMPILER__lab1_Debug C$:/Cprog/MephiSem2
 #############################################
 # Link the executable lab1.exe
 
-build lab1.exe: C_EXECUTABLE_LINKER__lab1_Debug CMakeFiles/lab1.dir/main.c.obj CMakeFiles/lab1.dir/RingInfo.c.obj CMakeFiles/lab1.dir/Vector.c.obj CMakeFiles/lab1.dir/ints.c.obj
+build lab1.exe: C_EXECUTABLE_LINKER__lab1_Debug CMakeFiles/lab1.dir/main.c.obj CMakeFiles/lab1.dir/RingInfo.c.obj CMakeFiles/lab1.dir/Vector.c.obj CMakeFiles/lab1.dir/ints.c.obj CMakeFiles/lab1.dir/double.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab1.dir
