@@ -14,8 +14,6 @@ struct Vector3{
     void* z;
 };
 
-//vs
-//vs->v3s[3]->x=10
 struct vectors{
     struct RingInfo* ringInfo;
     size_t len;
@@ -25,9 +23,11 @@ struct vectors{
 
 struct vectors *from_file(char *file_name, struct RingInfo *ri);
 void print_v( struct vectors *vs);
+void print_v3(struct  Vector3*vs, struct RingInfo *ri);
+void print_val(void * v, struct RingInfo* ri);
 
-struct Vector3* sum(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);
+struct Vector3* mult_sc(struct Vector3*v1, struct Vector3*v2, struct RingInfo *ri);
+struct Vector3* sum_vec(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);
 void* mult(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);
-struct Vector3* multSc(void* scalar, struct Vector3* v, struct RingInfo *ri);
 
 #endif //LAB1_VECTOR_H
