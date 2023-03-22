@@ -17,6 +17,7 @@ struct RingInfo
     void* one;
     void *(*new)(void *);
     void *(*strtoval) (char *str);
+    void *(*valtostr)(void  *);
 };
 
 #endif //LAB1_RINGINFO_H

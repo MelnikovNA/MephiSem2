@@ -35,7 +35,7 @@ void* mult_int(void* a1,void* a2){
     return (void*) res;
 }
 
-void *strtoval (char *str){
+void *str_to_val_int(char *str){
     long res=strtol(str,NULL,10);
     if (res==LONG_MAX||res==LONG_MIN) {
         // out of bounds or wrong characters in string
@@ -50,7 +50,7 @@ void *strtoval (char *str){
     return new_int((void*)&v);
 }
 
-char *valtostr(void *v){
+char *val_to_str_int(void *v){
     char *str = calloc(1, MAX_INT_LEN);
     snprintf(str, MAX_INT_LEN,"%d", *(int *)v);
     return str;

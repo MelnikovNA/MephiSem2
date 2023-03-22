@@ -13,6 +13,7 @@ struct RingInfo* Create(
         void* one,
         void* (*new)(void *),
         void* (*strtoval)(char *),
+        void *(*valtostr)(void  *);
         )
 {
     struct  RingInfo* ringInfo = malloc(sizeof(struct RingInfo));
@@ -24,4 +25,5 @@ struct RingInfo* Create(
     ringInfo->one = one;
     ringInfo->new=new;
     ringInfo->strtoval=strtoval;
+    ringInfo->valtostr=valtostr;
 };
