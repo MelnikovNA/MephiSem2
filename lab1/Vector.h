@@ -34,7 +34,7 @@ void *GetY(struct Vector3* vect);
 void *GetZ(struct Vector3* vect);
 
 struct vectors *from_file(char *file_name, struct RingInfo *ri);
-int print_v(struct RingInfo *ri, struct vectors *vs);
+void print_v(struct RingInfo *ri, struct vectors *vs);
 
 struct Vector3* sum(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);
 void* mult(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri);

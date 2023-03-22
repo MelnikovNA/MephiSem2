@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <errno.h>
 
 #include "RingInfo.h"
 #include "Vector.h"
 
 struct Vector3 *the_zero = NULL;
 
+/*
 struct Vector3 *zero(struct RingInfo ri) {
     if (!the_zero) {
         int zero_val = 0;
@@ -21,7 +21,7 @@ struct Vector3 *zero(struct RingInfo ri) {
         the_zero->z = ri->new(&zero_val);
     }
     return the_zero;
-};
+};*/
 
 // v=Sum(a,b,ri->sum);
 
@@ -43,11 +43,8 @@ void raise(char *s) {
 
 struct vectors *from_file(char *file_name, struct RingInfo *ri) {
     struct vectors *vs = calloc(1, sizeof(struct vectors));
-    struct Vector3 *new_vector = {
-            void *x;
-            void *y;
-            void *z;
-    };
+    vs->ringInfo=ri;
+    struct Vector3 *new_vector = NULL;
     char x[100], y[100], z[100];
     vs->len = 0;
     vs->capacity = 0;
@@ -58,10 +55,14 @@ struct vectors *from_file(char *file_name, struct RingInfo *ri) {
         return NULL;
     }
     while (1) { //read line from file
-        int ret = fscanf(file, "%s%s%s", x, y, z);
+        if(feof(f)){
+            return vs;
+        }
+        int ret = fscanf(f, "%s%s%s", x, y, z);
         if(ret != 3){
             fprintf(stderr, "format invalid %s\n",
                     file_name);
+            return NULL;
         }
         void *vx = ri->strtoval(x);
         if (vx == NULL) {
@@ -78,24 +79,26 @@ struct vectors *from_file(char *file_name, struct RingInfo *ri) {
 
         vs->len++;
         if (vs->capacity < vs->len) {
-            capacity += 100;
+            vs->capacity += 100;
             vs->v3s = realloc(vs->v3s, vs->capacity* sizeof(void*));
         }
-        new_vector= malloc(sizeof(Vector3));
+        new_vector= malloc(1*sizeof(struct Vector3));
         new_vector->x = vx;
         new_vector->y = vy;
         new_vector->z = vz;
-        vs->v3s[len] = new_vector;
+        vs->v3s[vs->len] = new_vector;
     }
-    return vs;
 }
 
-int printv(struct RingInfo *ri, struct vectors *vs){
-    for(int i =0; i<=vs->len;i++){
-        char vx = ri->valtostr(vs->v3s[i]->x);
-        char vy = ri->valtostr(vs->v3s[i]->y);
-        char vz = ri->valtostr(vs->v3s[i]->z);
-        printf("%s%s%s", vx, vy, vz);
+void print_v(struct RingInfo *ri, struct vectors *vs){
+    if(vs==NULL){
+        return ;
+    }
+    for(int i =1; i<=vs->len;i++){
+        char *vx = ri->valtostr(vs->v3s[i]->x);
+        char *vy = ri->valtostr(vs->v3s[i]->y);
+        char *vz = ri->valtostr(vs->v3s[i]->z);
+        printf("%s %s %s\n", vx, vy, vz);
         free(vx);
         free(vy);
         free(vz);

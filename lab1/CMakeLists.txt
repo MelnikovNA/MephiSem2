@@ -3,4 +3,4 @@ project(lab1 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(lab1 main.c RingInfo.h Vector.h ints.h)
+add_executable(lab1 main.c RingInfo.h RingInfo.c Vector.h Vector.c ints.h ints.c)
