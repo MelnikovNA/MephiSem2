@@ -15,7 +15,7 @@ void* mult(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri){
     res->y = ri->mult(v1->y, v2->y);
     res->z = ri->mult(v1->z, v2->z);
     return  res;
-};
+}
 
 struct Vector3* sum_vec(struct Vector3* v1, struct Vector3* v2, struct RingInfo *ri){
     struct Vector3* res = malloc(sizeof(struct Vector3));
