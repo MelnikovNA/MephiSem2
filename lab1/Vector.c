@@ -86,6 +86,40 @@ struct vectors *from_file(char *file_name, struct RingInfo *ri) {
         vs->v3s[vs->len-1] = new_vector;
     }
 }
+
+struct vectors *vectors_imput(struct  vectors *vs, struct RingInfo *ri){
+    struct Vector3 *new_vector = NULL;
+    printf("Enter Vector(x y z): ");
+    char x[100], y[100], z[100];
+    int ret = scanf("%s%s%s\n", x, y, z);
+    if(ret != 3){
+        printf(stderr, "format invalid \n");
+        return NULL;
+    }
+    void *vx = ri->strtoval(x);
+    if (vx == NULL) {
+        raise("x wrong value");
+    }
+    void *vy = ri->strtoval(y);
+    if (vy == NULL) {
+        raise("y wrong value");
+    }
+    void *vz = ri->strtoval(z);
+    if (vz == NULL) {
+        raise("z wrong value");
+    }
+    vs->len++;
+    if (vs->capacity < vs->len) {
+        vs->capacity += 100;
+        vs->v3s = realloc(vs->v3s, vs->capacity* sizeof(void*));
+    }
+    new_vector= malloc(1* sizeof(struct Vector3));
+    new_vector->x=vx;
+    new_vector->y = vy;
+    new_vector->z=vz;
+    vs->v3s[vs->len-1]=new_vector;
+}
+
 void print_val(void * v, struct RingInfo* ri){
     if(v==NULL){
         return;
@@ -109,11 +143,12 @@ void print_v3(struct  Vector3*vs, struct RingInfo *ri){
     free(vz);
 }
 
-void print_v( struct vectors *vs){
+void print_vs( struct vectors *vs){
     if(vs==NULL){
         return ;
     }
     for(int i =0; i<vs->len;i++){
+        printf("%d) ", i);
         print_v3(vs->v3s[i], vs->ringInfo);
     }
 }

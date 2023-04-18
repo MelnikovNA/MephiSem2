@@ -22,7 +22,9 @@ struct vectors{
 };
 
 struct vectors *from_file(char *file_name, struct RingInfo *ri);
-void print_v( struct vectors *vs);
+struct vectors *vectors_imput(struct  vectors *vs, struct RingInfo *ri);
+
+void print_vs( struct vectors *vs);
 void print_v3(struct  Vector3*vs, struct RingInfo *ri);
 void print_val(void * v, struct RingInfo* ri);
 

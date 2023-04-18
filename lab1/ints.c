@@ -3,7 +3,6 @@
 //
 #include <stdlib.h>
 #include <stdio.h>
-#include <malloc.h>
 #define MAX_INT_LEN 20
 
 void *new_int(void *int_ptr){
@@ -40,6 +39,10 @@ void *str_to_val_int(char *str){
     char *end_ptr=NULL;
     long res=strtol(str,&end_ptr,10);
     if (errno==EINVAL){
+        return NULL;
+    }
+    if (end_ptr==NULL || *end_ptr!='\0') {
+        // out of bounds or wrong characters in string
         return NULL;
     }
     int v=(int)res;

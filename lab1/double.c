@@ -42,6 +42,10 @@ void *str_to_val_double(char *str){
     if(errno==EINVAL){
         return NULL;
     }
+    if (end_ptr==NULL || *end_ptr!='\0') {
+        // out of bounds or wrong characters in string
+        return NULL;
+    }
     double v = (double)res;
     return new_double((void*)&v);
 }
