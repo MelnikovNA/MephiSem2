@@ -43,6 +43,35 @@ struct  vectors_t sum_tests[] = {
          true},
 };
 
+struct vectors_mult_sc{
+    struct test_vector3 a;
+    struct test_vector3 b;
+    int res;
+    int want_err;
+};
+
+struct vectors_mult_sc mult_sc_test[]={
+        {{ 1,  1,  1},
+         { 1,1, 1},
+         3,
+         false},
+
+         {{ 1,  2,  3},
+         { 100,243, 12},
+         622,
+         false},
+
+         {{ 13,  -10,  21},
+         { 331,10, 11},
+         4434,
+         false},
+
+         {{ 1,  1,  1},
+         { 1,1, 1},
+         300000,
+          true},
+};
+
 struct ints_test{
     int a;
     char *b;
@@ -91,7 +120,7 @@ int tests_ints_to_strs(){
 };
 
 int tests_sum(struct RingInfo* ri){
-    struct Vector3 a,b,res;
+    struct Vector3 a,b;
     for(int i = 0; i< ARRAY_SIZE(sum_tests);i++){
         a.x=&sum_tests[i].a.x;
         a.y=&sum_tests[i].a.y;
@@ -112,7 +141,29 @@ int tests_sum(struct RingInfo* ri){
             exit(1);
         }
     }
-    printf("Tests (int sum vectors ) passed ");
+    printf("Tests (int sum vectors ) passed\n ");
+    return 0;
+};
+
+int tests_mult_sc(struct RingInfo* ri){
+   struct Vector3 a, b;
+   for(int i =0; i< ARRAY_SIZE(mult_sc_test);i++){
+       a.x=&mult_sc_test[i].a.x;
+       a.y=&mult_sc_test[i].a.y;
+       a.z=&mult_sc_test[i].a.z;
+
+       b.x = &mult_sc_test[i].b.x;
+       b.y = &mult_sc_test[i].b.y;
+       b.z = &mult_sc_test[i].b.z;
+       void* res = mult_sc(&a, &b, ri);
+       int r = *((int*)res);
+       if(r==mult_sc_test[i].res && mult_sc_test[i].want_err==true ||
+       r!=mult_sc_test[i].res && mult_sc_test[i].want_err==false){
+           printf("test #%d failed\n",i);
+           exit(1);
+       }
+   }
+    printf("Tests (int mult_sc vectors ) passed\n ");
     return 0;
 };
 
@@ -123,5 +174,6 @@ int main(){
     ri= Create(sizeof(int), &sum_int,&mult_int,  &new_int,
                &str_to_val_int, &val_to_str_int);
     tests_sum(ri);
+    tests_mult_sc(ri);
     return 0;
 }

@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
+#include <error.h>
 
 #include "RingInfo.h"
 #include "Vector.h"
