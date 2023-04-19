@@ -5,3 +5,4 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(lab1 main.c RingInfo.h RingInfo.c Vector.h Vector.c ints.h ints.c double.h double.c menu.h menu.c )
 add_executable(tests test.c RingInfo.h RingInfo.c Vector.h Vector.c ints.h ints.c double.h double.c menu.h menu.c )
+add_executable(testsdouble tests_double.c RingInfo.h RingInfo.c Vector.h Vector.c ints.h ints.c double.h double.c menu.h menu.c )

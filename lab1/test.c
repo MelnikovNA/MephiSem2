@@ -8,32 +8,38 @@
 
 #define ARRAY_SIZE(foo) (sizeof(foo)/sizeof(foo[0]))
 
+struct test_vector3{
+    int x;
+    int y;
+    int z;
+};
+
 struct vectors_t{
-    struct Vector3 a;
-    struct Vector3 b;
-    struct Vector3 res;
+    struct test_vector3 a;
+    struct test_vector3 b;
+    struct test_vector3 res;
     int want_err;
 };
 
 struct  vectors_t sum_tests[] = {
-        {{(void*)1,(void*)1, (void*)1},
-         {(void*)1,(void*)1, (void*)1},
-         {(void*)2,(void*)2, (void*)2},
+        {{ 1,  1,  1},
+         { 1,1, 1},
+         {2,2, 2},
          false},
 
-        {{(void*)1,(void*)2, (void*)3},
-         {(void*)3,(void*)2, (void*)1},
-         {(void*)4,(void*)4, (void*)4},
+        {{1,2, 3},
+         {3,2, 1},
+         {4,4, 4},
          false},
 
-        {{(void*)-10,(void*)1, (void*)1},
-         {(void*)1,(void*)1, (void*)1},
-         {(void*)-9,(void*)2, (void*)2},
+        {{-10,1, 1},
+         {1,1, 1},
+         {-9,2, 2},
          false},
 
-        {{(void*)-10,(void*)1, (void*)1},
-         {(void*)1,(void*)1, (void*)1},
-         {(void*)-900,(void*)2, (void*)2},
+        {{-10,1, 1},
+         {1,1, 1},
+         {-900,2, 2},
          true},
 };
 
@@ -68,7 +74,6 @@ int tests_strs_to_ints(){
         }
         free(res);
     }
-
     printf("Tests (str to int) passed\n");
     return 0;
 }
@@ -86,10 +91,23 @@ int tests_ints_to_strs(){
 };
 
 int tests_sum(struct RingInfo* ri){
+    struct Vector3 a,b,res;
     for(int i = 0; i< ARRAY_SIZE(sum_tests);i++){
-        void* res = sum_vec(&sum_tests[i].a, &sum_tests[i].b, ri);
-        if(res == &sum_tests[i].res && sum_tests[i].want_err == true ||
-        res!=&sum_tests[i].res && sum_tests[i].want_err == false){
+        a.x=&sum_tests[i].a.x;
+        a.y=&sum_tests[i].a.y;
+        a.z=&sum_tests[i].a.z;
+
+        b.x=&sum_tests[i].b.x;
+        b.y=&sum_tests[i].b.y;
+        b.z=&sum_tests[i].b.z;
+
+        struct Vector3 *sum = sum_vec(&a, &b, ri);
+
+        bool comp =*(int*) sum->x == sum_tests[i].res.x  &&
+                                *(int*) sum->y == sum_tests[i].res.z &&
+                                *(int*) sum->z == sum_tests[i].res.z;
+        if(comp==true && sum_tests[i].want_err == true ||
+        comp==false && sum_tests[i].want_err == false){
             printf("test #%d failed\n",i);
             exit(1);
         }

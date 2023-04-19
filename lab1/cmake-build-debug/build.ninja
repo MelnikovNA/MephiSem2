@@ -166,6 +166,69 @@ build tests.exe: C_EXECUTABLE_LINKER__tests_Debug CMakeFiles/tests.dir/test.c.ob
   TARGET_IMPLIB = libtests.dll.a
   TARGET_PDB = tests.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target testsdouble
+
+
+#############################################
+# Order-only phony target for testsdouble
+
+build cmake_object_order_depends_target_testsdouble: phony || CMakeFiles/testsdouble.dir
+
+build CMakeFiles/testsdouble.dir/tests_double.c.obj: C_COMPILER__testsdouble_Debug C$:/Cprog/MephiSem2/lab1/tests_double.c || cmake_object_order_depends_target_testsdouble
+  DEP_FILE = CMakeFiles\testsdouble.dir\tests_double.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  OBJECT_FILE_DIR = CMakeFiles\testsdouble.dir
+
+build CMakeFiles/testsdouble.dir/RingInfo.c.obj: C_COMPILER__testsdouble_Debug C$:/Cprog/MephiSem2/lab1/RingInfo.c || cmake_object_order_depends_target_testsdouble
+  DEP_FILE = CMakeFiles\testsdouble.dir\RingInfo.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  OBJECT_FILE_DIR = CMakeFiles\testsdouble.dir
+
+build CMakeFiles/testsdouble.dir/Vector.c.obj: C_COMPILER__testsdouble_Debug C$:/Cprog/MephiSem2/lab1/Vector.c || cmake_object_order_depends_target_testsdouble
+  DEP_FILE = CMakeFiles\testsdouble.dir\Vector.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  OBJECT_FILE_DIR = CMakeFiles\testsdouble.dir
+
+build CMakeFiles/testsdouble.dir/ints.c.obj: C_COMPILER__testsdouble_Debug C$:/Cprog/MephiSem2/lab1/ints.c || cmake_object_order_depends_target_testsdouble
+  DEP_FILE = CMakeFiles\testsdouble.dir\ints.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  OBJECT_FILE_DIR = CMakeFiles\testsdouble.dir
+
+build CMakeFiles/testsdouble.dir/double.c.obj: C_COMPILER__testsdouble_Debug C$:/Cprog/MephiSem2/lab1/double.c || cmake_object_order_depends_target_testsdouble
+  DEP_FILE = CMakeFiles\testsdouble.dir\double.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  OBJECT_FILE_DIR = CMakeFiles\testsdouble.dir
+
+build CMakeFiles/testsdouble.dir/menu.c.obj: C_COMPILER__testsdouble_Debug C$:/Cprog/MephiSem2/lab1/menu.c || cmake_object_order_depends_target_testsdouble
+  DEP_FILE = CMakeFiles\testsdouble.dir\menu.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  OBJECT_FILE_DIR = CMakeFiles\testsdouble.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target testsdouble
+
+
+#############################################
+# Link the executable testsdouble.exe
+
+build testsdouble.exe: C_EXECUTABLE_LINKER__testsdouble_Debug CMakeFiles/testsdouble.dir/tests_double.c.obj CMakeFiles/testsdouble.dir/RingInfo.c.obj CMakeFiles/testsdouble.dir/Vector.c.obj CMakeFiles/testsdouble.dir/ints.c.obj CMakeFiles/testsdouble.dir/double.c.obj CMakeFiles/testsdouble.dir/menu.c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\testsdouble.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = testsdouble.exe
+  TARGET_IMPLIB = libtestsdouble.dll.a
+  TARGET_PDB = testsdouble.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -196,6 +259,8 @@ build lab1: phony lab1.exe
 
 build tests: phony tests.exe
 
+build testsdouble: phony testsdouble.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -204,7 +269,7 @@ build tests: phony tests.exe
 #############################################
 # Folder: C:/Cprog/MephiSem2/lab1/cmake-build-debug
 
-build all: phony lab1.exe tests.exe
+build all: phony lab1.exe tests.exe testsdouble.exe
 
 # =============================================================================
 # Built-in targets
