@@ -93,7 +93,7 @@ struct vectors *vectors_imput(struct  vectors *vs, struct RingInfo *ri){
     struct Vector3 *new_vector = NULL;
     printf("Enter Vector(x y z): ");
     char x[100], y[100], z[100];
-    int ret = scanf("%s%s%s\n", x, y, z);
+    int ret = scanf("%s%s%s", x, y, z);
     if(ret != 3){
         printf(stderr, "format invalid \n");
         return NULL;
@@ -120,6 +120,7 @@ struct vectors *vectors_imput(struct  vectors *vs, struct RingInfo *ri){
     new_vector->y = vy;
     new_vector->z=vz;
     vs->v3s[vs->len-1]=new_vector;
+    return 0;
 }
 
 void print_val(void * v, struct RingInfo* ri){
