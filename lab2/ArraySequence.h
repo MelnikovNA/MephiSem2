@@ -7,27 +7,40 @@
 #include <iostream>
 
 using namespace std;
+namespace da {
+    template<class T>
+    class DynamicArray {
+    private:
+        T *data;
+        unsigned int size;
+        unsigned int capt;
 
-template<class T>class DynamicArray{
-private:
-    T *data;
-    unsigned int size;
-    unsigned int capt;
-    void extend();
-public:
-    DynamicArray();
-    DynamicArray(int max_size);
-    DynamicArray(T*items, int count);
-    ~DynamicArray();
-    DynamicArray(DynamicArray<T> &dynamicArrayconst);
-    int GetSize();
-    void Set(int index, T value);
-    void Resize(int newSize);
-    void print();
-    void push(T value);
-    T & operator [] (int index){return data[index];};
-};
+        void extend();
 
+    public:
+        DynamicArray();
+
+        DynamicArray(int max_size);
+
+        DynamicArray(T *items, int count);
+
+        ~DynamicArray();
+
+        DynamicArray(DynamicArray<T> &dynamicArrayconst);
+
+        int GetSize();
+
+        void Set(int index, T value);
+
+        void Resize(int newSize);
+
+        void print();
+
+        void push(T value);
+
+        T &operator[](int index) { return data[index]; };
+    };
+}
 template<class T>
 DynamicArray<T>::DynamicArray() {
     data = NULL;
