@@ -13,16 +13,19 @@ private:
     T *data;
     unsigned int size;
     unsigned int capt;
+    void extend();
 public:
-    DynamicArray(); //конструктор по умолчанию done
-    DynamicArray(int max_size);//done
-    DynamicArray(T*items, int count);//done
-    ~DynamicArray();//done
-    DynamicArray(DynamicArray<T> &dynamicArrayconst);//done
-    int GetSize();//done
-    void Set(int index, T value);//done
-    void Resize(int newSize);//done
-    void print();//done
+    DynamicArray();
+    DynamicArray(int max_size);
+    DynamicArray(T*items, int count);
+    ~DynamicArray();
+    DynamicArray(DynamicArray<T> &dynamicArrayconst);
+    int GetSize();
+    void Set(int index, T value);
+    void Resize(int newSize);
+    void print();
+    void push(T value);
+    DynamicArray<T>operator [] (int i){return data[i];};
 };
 
 template<class T>
@@ -33,9 +36,20 @@ DynamicArray<T>::DynamicArray() {
 };
 
 template<class T>
-DynamicArray<T>::DynamicArray(int size) {
-    capt = 10;
-    this->size = size;
+void DynamicArray<T>::extend() {
+    T*newData = new T [capt+10];
+    for(int i =0; i<capt; i++){
+        newData[i]=data[i];
+    }
+    delete [] data;
+    data  = newData;
+    capt+=10;
+}
+
+template<class T>
+DynamicArray<T>::DynamicArray(int max_size) {
+    capt = max_size;
+    this->size=0;
     data = new T[capt];
 }
 
@@ -60,7 +74,10 @@ DynamicArray<T>::~DynamicArray() {
 
 template<class T>
 DynamicArray<T>::DynamicArray(DynamicArray<T> &dynamicArrayconst){
-    this->data=dynamicArrayconst.data;
+    this->data = new T(dynamicArrayconst.capt);
+    for(int i = 0; i<dynamicArrayconst.size;i++){
+        data[i]=dynamicArrayconst.data[i];
+    }
     this->capt=dynamicArrayconst.capt;
     this->size=dynamicArrayconst.size;
 }
@@ -96,4 +113,13 @@ void DynamicArray<T>::print() {
     }
 }
 
+template<class T>
+void DynamicArray<T>::push(T value) {
+    if(size==capt){
+        extend();
+    }
+    data[size] = value;
+    size++;
+
+}
 #endif //LAB2_ARRAYSEQUENCE_H
