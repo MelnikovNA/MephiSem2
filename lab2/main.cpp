@@ -10,7 +10,11 @@ int main(){
     DynamicArray<int> arr2(arr);
     arr.Set(1, 333);
     arr.push(13);
+    cout<<arr.GetSize()<<endl;
     arr.print();
+    arr.Resize(3);
+    arr.print();
+    cout<<arr2.GetSize()<<endl;
     arr2.print();
     cout<< arr[1];
     return 0;

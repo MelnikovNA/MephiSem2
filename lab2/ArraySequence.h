@@ -25,7 +25,7 @@ public:
     void Resize(int newSize);
     void print();
     void push(T value);
-    DynamicArray<T>operator [] (int i){return data[i];};
+    T & operator [] (int index){return data[index];};
 };
 
 template<class T>
@@ -109,8 +109,9 @@ void DynamicArray<T>::Set(int index, T value) {
 template<class T>
 void DynamicArray<T>::print() {
     for(int i =0; i<size;i++){
-        cout<<data[i]<<" "<<endl;
+        cout<<data[i]<<" ";
     }
+    cout<<endl;
 }
 
 template<class T>
