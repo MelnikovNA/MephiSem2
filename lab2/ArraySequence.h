@@ -42,14 +42,14 @@ namespace da {
     };
 }
 template<class T>
-DynamicArray<T>::DynamicArray() {
+da::DynamicArray<T>::DynamicArray() {
     data = NULL;
     size = 0;
     capt = 0;
 };
 
 template<class T>
-void DynamicArray<T>::extend() {
+void da::DynamicArray<T>::extend() {
     T*newData = new T [capt+10];
     for(int i =0; i<capt; i++){
         newData[i]=data[i];
@@ -60,14 +60,14 @@ void DynamicArray<T>::extend() {
 }
 
 template<class T>
-DynamicArray<T>::DynamicArray(int max_size) {
+da::DynamicArray<T>::DynamicArray(int max_size) {
     capt = max_size;
     this->size=0;
     data = new T[capt];
 }
 
 template<class T>
-DynamicArray<T>::DynamicArray(T *items, int count) {
+da::DynamicArray<T>::DynamicArray(T *items, int count) {
     while(count>capt){
         capt+=10;
     }
@@ -79,14 +79,14 @@ DynamicArray<T>::DynamicArray(T *items, int count) {
 }
 
 template<class T>
-DynamicArray<T>::~DynamicArray() {
+da::DynamicArray<T>::~DynamicArray() {
     delete [] data;
     size = 0;
     capt = 0;
 }
 
 template<class T>
-DynamicArray<T>::DynamicArray(DynamicArray<T> &dynamicArrayconst){
+da::DynamicArray<T>::DynamicArray(DynamicArray<T> &dynamicArrayconst){
     this->data = new T(dynamicArrayconst.capt);
     for(int i = 0; i<dynamicArrayconst.size;i++){
         data[i]=dynamicArrayconst.data[i];
@@ -96,10 +96,10 @@ DynamicArray<T>::DynamicArray(DynamicArray<T> &dynamicArrayconst){
 }
 
 template <class T>
-int DynamicArray<T>::GetSize() {return size;}
+int da::DynamicArray<T>::GetSize() {return size;}
 
 template<class T>
-void DynamicArray<T>::Resize(int newSize) {
+void da::DynamicArray<T>::Resize(int newSize) {
     while(newSize>=capt)capt+=10;
     T *newData = new T[capt];
     int i=0;
@@ -113,14 +113,14 @@ void DynamicArray<T>::Resize(int newSize) {
 }
 
 template<class T>
-void DynamicArray<T>::Set(int index, T value) {
+void da::DynamicArray<T>::Set(int index, T value) {
     if(index>=size){
         throw "IndexOutOfRange";
     };
     data[index]=value;
 };
 template<class T>
-void DynamicArray<T>::print() {
+void da::DynamicArray<T>::print() {
     for(int i =0; i<size;i++){
         cout<<data[i]<<" ";
     }
@@ -128,7 +128,7 @@ void DynamicArray<T>::print() {
 }
 
 template<class T>
-void DynamicArray<T>::push(T value) {
+void da::DynamicArray<T>::push(T value) {
     if(size==capt){
         extend();
     }
