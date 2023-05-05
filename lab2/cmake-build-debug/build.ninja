@@ -55,6 +55,12 @@ build CMakeFiles/lab2.dir/main.cpp.obj: CXX_COMPILER__lab2_Debug C$:/Cprog/Mephi
   OBJECT_DIR = CMakeFiles\lab2.dir
   OBJECT_FILE_DIR = CMakeFiles\lab2.dir
 
+build CMakeFiles/lab2.dir/LinkedList.cpp.obj: CXX_COMPILER__lab2_Debug C$:/Cprog/MephiSem2/lab2/LinkedList.cpp || cmake_object_order_depends_target_lab2
+  DEP_FILE = CMakeFiles\lab2.dir\LinkedList.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\lab2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab2
@@ -63,7 +69,7 @@ build CMakeFiles/lab2.dir/main.cpp.obj: CXX_COMPILER__lab2_Debug C$:/Cprog/Mephi
 #############################################
 # Link the executable lab2.exe
 
-build lab2.exe: CXX_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/main.cpp.obj
+build lab2.exe: CXX_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/main.cpp.obj CMakeFiles/lab2.dir/LinkedList.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab2.dir
