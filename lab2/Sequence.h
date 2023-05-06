@@ -13,7 +13,7 @@ public:
     virtual T Get(int index) =0;
 
     virtual  Sequence<T>* GetSubsequence(int startIndex, int endIndex) = 0;
-    virtual  int GetLenght() = 0;
+    virtual  int GetLength() = 0;
 
     virtual void Append(T item) = 0;
     virtual void Prepend(T item) = 0;
