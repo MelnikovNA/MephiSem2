@@ -28,8 +28,9 @@ private:
 public:
 
     LinkedList(){
-        head = NULL;
-        end = NULL;
+        len = 0;
+        head = nullptr;
+        end = nullptr;
     };
 
     void Prepend(T *item){

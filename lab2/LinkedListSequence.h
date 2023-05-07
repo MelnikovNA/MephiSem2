@@ -19,7 +19,7 @@ public:
     }
 
     LinkedListSequence (){
-        linkedList = LinkedList();
+        linkedList = LinkedList<T>();
     }
 
     ~LinkedListSequence(){
