@@ -13,7 +13,7 @@ using namespace std;
 template<class T>
 class Element{
 public:
-    T data;;
+    T data;
     Element<T> *next;
     Element<T>*prev;
 };
@@ -26,6 +26,11 @@ private:
     Element<T>*end = nullptr;
 
 public:
+
+    LinkedList(){
+        head = NULL;
+        end = NULL;
+    };
 
     void Prepend(T *item){
         Element<T> *elem = new Element<T>;
@@ -57,8 +62,6 @@ public:
         end = elem;
     };
 
-    LinkedList(){
-    };
 
     LinkedList(T *items, int count){
         for(int i =0; i<count;i++) Append(items[i]);
