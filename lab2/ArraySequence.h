@@ -37,7 +37,7 @@ public:
 
     ~ArraySequence()
     {
-        delete data;
+        delete  data;
     }
 
     void Append(T item) override
@@ -48,7 +48,7 @@ public:
 
     void Prepend(T item) override
     {
-        data->Resize(GetLength());
+        data->Resize(GetLength()+1);
         for(int i  = GetLength()-1;i>0;i--){
             data->Set(i, Get(i-1));
         }
