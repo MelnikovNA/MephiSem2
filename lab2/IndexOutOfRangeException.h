@@ -6,9 +6,21 @@
 #define LAB2_INDEXOUTOFRANGEEXCEPTION_H
 
 
-class IndexOutOfRangeException {
-public:
-};
+typedef enum {
+    Empty,
+    Invalid,
+} Code;
 
+class IndexOutOfRangeException{
+    Code error;
+    const char* text[2] = {"Sequence is empty", "Sequence doesn't have element with that index"};
+
+public:
+    void printError()
+    {
+        std::cout << text[(int) error] << std::endl;
+    }
+    IndexOutOfRangeException(Code er) : error(er) {};
+};
 
 #endif //LAB2_INDEXOUTOFRANGEEXCEPTION_H

@@ -73,6 +73,105 @@ build lab2.exe: CXX_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/main.cpp.o
   TARGET_IMPLIB = liblab2.dll.a
   TARGET_PDB = lab2.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Seqtest
+
+
+#############################################
+# Order-only phony target for Seqtest
+
+build cmake_object_order_depends_target_Seqtest: phony || CMakeFiles/Seqtest.dir
+
+build CMakeFiles/Seqtest.dir/SeqTest.cpp.obj: CXX_COMPILER__Seqtest_Debug C$:/Cprog/MephiSem2/lab2/SeqTest.cpp || cmake_object_order_depends_target_Seqtest
+  DEP_FILE = CMakeFiles\Seqtest.dir\SeqTest.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Seqtest.dir
+  OBJECT_FILE_DIR = CMakeFiles\Seqtest.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Seqtest
+
+
+#############################################
+# Link the executable Seqtest.exe
+
+build Seqtest.exe: CXX_EXECUTABLE_LINKER__Seqtest_Debug CMakeFiles/Seqtest.dir/SeqTest.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Seqtest.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Seqtest.exe
+  TARGET_IMPLIB = libSeqtest.dll.a
+  TARGET_PDB = Seqtest.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target LinkedListTest
+
+
+#############################################
+# Order-only phony target for LinkedListTest
+
+build cmake_object_order_depends_target_LinkedListTest: phony || CMakeFiles/LinkedListTest.dir
+
+build CMakeFiles/LinkedListTest.dir/linkedListTests.cpp.obj: CXX_COMPILER__LinkedListTest_Debug C$:/Cprog/MephiSem2/lab2/linkedListTests.cpp || cmake_object_order_depends_target_LinkedListTest
+  DEP_FILE = CMakeFiles\LinkedListTest.dir\linkedListTests.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LinkedListTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\LinkedListTest.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target LinkedListTest
+
+
+#############################################
+# Link the executable LinkedListTest.exe
+
+build LinkedListTest.exe: CXX_EXECUTABLE_LINKER__LinkedListTest_Debug CMakeFiles/LinkedListTest.dir/linkedListTests.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\LinkedListTest.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = LinkedListTest.exe
+  TARGET_IMPLIB = libLinkedListTest.dll.a
+  TARGET_PDB = LinkedListTest.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target DynamicArrTest
+
+
+#############################################
+# Order-only phony target for DynamicArrTest
+
+build cmake_object_order_depends_target_DynamicArrTest: phony || CMakeFiles/DynamicArrTest.dir
+
+build CMakeFiles/DynamicArrTest.dir/dynamicArrTests.cpp.obj: CXX_COMPILER__DynamicArrTest_Debug C$:/Cprog/MephiSem2/lab2/dynamicArrTests.cpp || cmake_object_order_depends_target_DynamicArrTest
+  DEP_FILE = CMakeFiles\DynamicArrTest.dir\dynamicArrTests.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\DynamicArrTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\DynamicArrTest.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target DynamicArrTest
+
+
+#############################################
+# Link the executable DynamicArrTest.exe
+
+build DynamicArrTest.exe: CXX_EXECUTABLE_LINKER__DynamicArrTest_Debug CMakeFiles/DynamicArrTest.dir/dynamicArrTests.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\DynamicArrTest.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = DynamicArrTest.exe
+  TARGET_IMPLIB = libDynamicArrTest.dll.a
+  TARGET_PDB = DynamicArrTest.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -99,6 +198,12 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build DynamicArrTest: phony DynamicArrTest.exe
+
+build LinkedListTest: phony LinkedListTest.exe
+
+build Seqtest: phony Seqtest.exe
+
 build lab2: phony lab2.exe
 
 # =============================================================================
@@ -109,7 +214,7 @@ build lab2: phony lab2.exe
 #############################################
 # Folder: C:/Cprog/MephiSem2/lab2/cmake-build-debug
 
-build all: phony lab2.exe
+build all: phony lab2.exe Seqtest.exe LinkedListTest.exe DynamicArrTest.exe
 
 # =============================================================================
 # Built-in targets

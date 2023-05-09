@@ -77,28 +77,30 @@ public:
     };
 
     ~LinkedList(){
-        Element<T>*elem1 = head;
-        Element<T>*elem2 = head;
-        while(elem1){
-            elem2 = elem1;
-            elem1 = elem1->next;
-            delete elem1;
-        };
+        Element<T>*elem = head;
+        if(elem!=NULL){
+            while (elem!=NULL){
+                Element<T> * elem2 = elem->next;
+                delete elem;
+                elem = elem2;
+            }
+            delete elem;
+        }
     };
 
     T GetFirst(){
-        if(head== nullptr)throw IndexOutOfRangeException();
+        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
         return head->data;
     };
 
     T GetLast(){
-        if(head== nullptr)throw IndexOutOfRangeException();
+        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
         return end->data;
     };
 
     T Get(int index){
-        if(head== nullptr)throw IndexOutOfRangeException();
-        if(index>len-1||index<0) throw IndexOutOfRangeException();
+        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
+        if(index>len-1||index<0) throw IndexOutOfRangeException(Invalid);
         Element<T> *elem = new Element<T>;
         elem = head;
         for(int i =0; i< index;i++){
@@ -108,8 +110,8 @@ public:
     }
 
     LinkedList<T>* GetSubList(int startIndex, int endIndex){
-        if(head== nullptr)throw IndexOutOfRangeException();
-        if(endIndex>len-1||startIndex>len-1||startIndex<0||endIndex<0||startIndex==endIndex)throw IndexOutOfRangeException();
+        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
+        if(endIndex>len-1||startIndex>len-1||startIndex<0||endIndex<0||startIndex==endIndex)throw IndexOutOfRangeException(Invalid);
         if(startIndex>endIndex){
             int a = startIndex;
             startIndex = endIndex;
@@ -132,8 +134,8 @@ public:
     int GetLenght(){return  len;};
 
     void InsertAt(T item, int index){
-        if(head== nullptr)throw IndexOutOfRangeException();
-        if(index>len-1||index<0) throw IndexOutOfRangeException();
+        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
+        if(index>len-1||index<0) throw IndexOutOfRangeException(Invalid);
         Element<T> *elem = new Element<T>;
         elem = head;
         for(int i =0; i<index;i++){

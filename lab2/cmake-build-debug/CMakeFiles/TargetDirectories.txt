@@ -1,3 +1,6 @@
 C:/Cprog/MephiSem2/lab2/cmake-build-debug/CMakeFiles/lab2.dir
+C:/Cprog/MephiSem2/lab2/cmake-build-debug/CMakeFiles/Seqtest.dir
+C:/Cprog/MephiSem2/lab2/cmake-build-debug/CMakeFiles/LinkedListTest.dir
+C:/Cprog/MephiSem2/lab2/cmake-build-debug/CMakeFiles/DynamicArrTest.dir
 C:/Cprog/MephiSem2/lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Cprog/MephiSem2/lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
