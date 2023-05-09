@@ -42,12 +42,17 @@ public:
 
     void Append(T item) override
     {
-        data->Append(item);
+        data->Resize(GetLength()+1);
+        data->Set(GetLength()-1, item);
     };
 
     void Prepend(T item) override
     {
-        data->Prepend(item);
+        data->Resize(GetLength());
+        for(int i  = GetLength()-1;i>0;i--){
+            data->Set(i, Get(i-1));
+        }
+        data->Set(0, item);
     };
 
     void InsertAt(T item, int index) override
@@ -99,20 +104,19 @@ public:
 
     ArraySequence<T>* GetSubsequence(int startIndex, int endIndex)
     {
-        return new ArraySequence(*data->getSubAr(startIndex, endIndex));
+        if(data->GetSize() == 0 || startIndex<0 || endIndex<0
+           || startIndex>endIndex || endIndex > data->GetSize() ) throw IndexOutOfRangeException(Empty);
+        T *arr = new T[endIndex-startIndex];
+        for (int i = 0; i < endIndex-startIndex; ++i) {
+            arr[i] =Get(startIndex+i);
+        }
+        auto arraySequence = new ArraySequence<T>(arr, endIndex-startIndex);
+        return arraySequence;
     };
 
     ArraySequence<T>* Concat(ArraySequence<T>* list)
     {
         return new ArraySequence(*data->concat(*list->getData()));
-    };
-
-    friend ostream &operator<<(ostream&out, ArraySequence arraySequence){
-        out<<""<<endl;
-        for(int i =0; i< arraySequence.GetLength();i++){
-            out<<arraySequence.Get(i)<<" ";
-        }
-        out<<""<<endl;
     };
 };
 

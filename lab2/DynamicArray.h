@@ -68,54 +68,6 @@ public:
         delete[] data;
     };
 
-    void Append(T item)
-    {
-        if (capacity <= sizeAr + 1)
-        {
-            capacity += SIZECON;
-            T* temp = new T[capacity];
-            temp[this->sizeAr] = item;
-            for (int i = 0; i < this->sizeAr; i++)
-            {
-                temp[i] = this->data[i];
-            }
-            delete this->data;
-            this->data = temp;
-            (this->sizeAr)++;
-        }
-        else
-        {
-            data[this->sizeAr] = item;
-            (this->sizeAr)++;
-        }
-    };
-
-    void Prepend(T item)
-    {
-        if (capacity == sizeAr + 1)
-        {
-            capacity += SIZECON;
-            T* temp = new T[capacity];
-            temp[0] = item;
-            for (int i = 0; i < this->sizeAr; i++)
-            {
-                temp[i + 1] = this->data[i];
-            }
-            delete this->data;
-            this->data = temp;
-            (this->sizeAr)++;
-        }
-        else
-        {
-            for (int i = sizeAr; i > 0; i--)
-            {
-                data[i] = data[i - 1];
-            }
-            data[0] = item;
-            sizeAr++;
-        }
-    };
-
     void Set(int index, T value)
     {
         try
