@@ -158,31 +158,6 @@ public:
         }
     };
 
-    void DeleteIndex(int index){
-        try
-        {
-            if (sizeAr == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (index < 0 || index >= sizeAr)
-                throw IndexOutOfRangeException(Invalid);
-            for (int i = sizeAr; i > index; i--){
-                data[i] = data[i - 1];
-            }
-            sizeAr--;
-            if (sizeAr + SIZE == capacity){
-                capacity -= SIZE;
-                T* temp = new T[capacity];
-                for (int i = 0; i < sizeAr; i++){
-                    temp[i] = this->data[i];
-                }
-                delete this->data;
-                this->data = temp;
-            }
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-        }
-    }
-
     DynamicArray<T>* GetSubAr(int startIndex, int fin){
         try{
             if (startIndex < 0 || startIndex >= sizeAr || fin >= sizeAr || fin < 0 || startIndex > fin)

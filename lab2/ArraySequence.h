@@ -40,19 +40,22 @@ public:
         delete  data;
     }
 
-    void Append(T item) override
-    {
-        data->Append(item);
+    void Append(T item) override{
+        data->Resize(GetLength()+1);
+        data->Set(GetLength()-1, item);
     };
 
-    void Prepend(T item) override
-    {
-        data->prepend(item);
+    void Prepend(T item) override{
+        data->Resize(GetLength()+1);
+        for (int i = data->GetSize()-1; i > 0; --i) {
+            data->Set(i, data->Get(i-1));
+        }
+        data->Set(0, item);
     };
 
     void InsertAt(T item, int index) override
     {
-        data->InsertAt(item, index);
+        data->Set(index, item);
     };
 
     T GetFirst() override
@@ -79,7 +82,17 @@ public:
 
     void DeleteAt(int index)
     {
-        data->DeleteIndex(index);
+        if(index<1, index>GetLength()) throw IndexOutOfRangeException(Invalid);
+        int len = GetLength();
+        T *a = new T[GetLength()-1];
+        int i = 0;
+        for (; i < index-1; ++i) {
+            a[i] = Get(i);
+        }
+        for (; i < GetLength(); ++i) {
+            a[i-1] = Get(i);
+        }
+        data = new DynamicArray<T>(a, len-1);
     }
 
     void Set(int index, T value) override
