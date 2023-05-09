@@ -42,17 +42,12 @@ public:
 
     void Append(T item) override
     {
-        data->Resize(GetLength()+1);
-        data->Set(GetLength()-1, item);
+        data->Append(item);
     };
 
     void Prepend(T item) override
     {
-        data->Resize(GetLength()+1);
-        for(int i  = GetLength()-1;i>0;i--){
-            data->Set(i, Get(i-1));
-        }
-        data->Set(0, item);
+        data->prepend(item);
     };
 
     void InsertAt(T item, int index) override

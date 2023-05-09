@@ -90,12 +90,14 @@ public:
     }
 
     void InsertAt(T item, int index){
-        try{
+        try
+        {
             if (sizeAr == 0)
                 throw IndexOutOfRangeException(Empty);
             if (index < 0 || index >= sizeAr)
                 throw IndexOutOfRangeException(Invalid);
-            if (capacity == sizeAr + 1){
+            if (capacity == sizeAr + 1)
+            {
                 capacity += SIZE;
                 T* temp = new T[capacity];
                 temp[index] = item;
@@ -198,6 +200,54 @@ public:
             return NULL;
         }
     }
+
+    void Append(T item)
+    {
+        if (capacity <= sizeAr + 1)
+        {
+            capacity += SIZE;
+            T* temp = new T[capacity];
+            temp[this->sizeAr] = item;
+            for (int i = 0; i < this->sizeAr; i++)
+            {
+                temp[i] = this->data[i];
+            }
+            delete this->data;
+            this->data = temp;
+            (this->sizeAr)++;
+        }
+        else
+        {
+            data[this->sizeAr] = item;
+            (this->sizeAr)++;
+        }
+    };
+
+    void prepend(T item)
+    {
+        if (capacity == sizeAr + 1)
+        {
+            capacity += SIZE;
+            T* temp = new T[capacity];
+            temp[0] = item;
+            for (int i = 0; i < this->sizeAr; i++)
+            {
+                temp[i + 1] = this->data[i];
+            }
+            delete this->data;
+            this->data = temp;
+            (this->sizeAr)++;
+        }
+        else
+        {
+            for (int i = sizeAr; i > 0; i--)
+            {
+                data[i] = data[i - 1];
+            }
+            data[0] = item;
+            sizeAr++;
+        }
+    };
 
     friend ostream& operator<<(ostream &out, DynamicArray dynamicData){
         out<<""<<endl;

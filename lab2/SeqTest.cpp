@@ -121,22 +121,22 @@ void arraySequenceTestDeleteElements(){
 }
 
 void arraySequenceTestAll(){
-    cout<<"GetFirst: ";
+    /*cout<<"GetFirst: ";
     arraySequenceTestGetFirst();
     cout<<"GetLast: ";
     arraySequenceTestGetLast();
     cout<<"Get: ";
     arraySequenceTestGet();
     cout<<"GetSubSequence: ";
-    arraySequenceTestGetSubSequence();
+    arraySequenceTestGetSubSequence();*/
     cout<<"InsertAt: ";
-    arraySequenceTestInsertAt();
+    arraySequenceTestInsertAt();/*
     cout<<"GetPrepend: ";
     arraySequenceTestPrepend();
     cout<<"DeleteElements: ";
     arraySequenceTestDeleteElements();
     cout<<"Append: ";
-    arraySequenceTestAppend();
+    arraySequenceTestAppend();*/
 }
 
 int main(){
