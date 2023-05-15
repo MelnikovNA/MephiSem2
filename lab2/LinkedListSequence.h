@@ -39,42 +39,42 @@ public:
         delete data;
     }
 
-    void append(T item) override
+    void Append(T item) override
     {
         data->append(item);
     };
 
-    void prepend(T item) override
+    void Prepend(T item) override
     {
         data->prepend(item);
     };
 
-    void insertAt(T item, int index) override
+    void InsertAt(T item, int index) override
     {
         data->insertAt(item, index);
     };
 
-    void deleteAt(int index)
+    void DeleteAt(int index)
     {
         data->deleteIndex(index);
     }
 
-    T getFirst() override
+    T GetFirst() override
     {
         return data->getFirst();
     };
 
-    T getLast() override
+    T GetLast() override
     {
         return data->getLast();
     };
 
-    T get(int index) override
+    T Get(int index) override
     {
         return data->get(index);
     };
 
-    int getLength() override
+    int GetLength() override
     {
         return data->getLength();
     };
@@ -84,7 +84,7 @@ public:
         return data;
     };
 
-    void set(int index, T value) override
+    void Set(int index, T value) override
     {
         data->set(index, value);
     }
@@ -97,7 +97,7 @@ public:
         return retval;
     };
 
-    LinkedListSequence<T>* concat(LinkedListSequence<T>* list)
+    LinkedListSequence<T>* Concat(LinkedListSequence<T>* list)
     {
         return new LinkedListSequence(*data->concat(*list->getData()));
     };
