@@ -89,44 +89,6 @@ public:
         sizeAr = newSize;
     }
 
-    void InsertAt(T item, int index){
-        try
-        {
-            if (sizeAr == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (index < 0 || index >= sizeAr)
-                throw IndexOutOfRangeException(Invalid);
-            if (capacity == sizeAr + 1)
-            {
-                capacity += SIZE;
-                T* temp = new T[capacity];
-                temp[index] = item;
-                for (int i = 0; i < index; i++)
-                {
-                    temp[i] = this->data[i];
-                }
-                for (int i = index + 1; i < this->sizeAr + 1; i++)
-                {
-                    temp[i] = this->data[i - 1];
-                }
-                delete this->data;
-                this->data = temp;
-                (this->sizeAr)++;
-            }
-            else
-            {
-                for (int i = sizeAr; i > index; i--)
-                {
-                    data[i] = data[i - 1];
-                }
-                data[index] = item;
-                sizeAr++;
-            }
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-        }
-    };
-
     DynamicArray<T>* Concat(DynamicArray<T>& lst){
         T* newData = new T[this->sizeAr + lst.getSize() + 1];
         for (int i = 0; i < this->sizeAr; i++)

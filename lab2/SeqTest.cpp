@@ -105,21 +105,6 @@ void arraySequenceTestInsertAt(){
     isAllRight(m);
 }
 
-void arraySequenceTestDeleteElements(){
-    bool m = true;
-    int *a = new int[10];
-    for (int i = 0; i < 10; ++i) {
-        a[i] = i+1;
-    }
-    ArraySequence<int> *arraySequence = new ArraySequence<int>(a, 10);
-    arraySequence->DeleteAt(2);
-    if(arraySequence->GetLength()!=9) m = false;
-    for (int i = 0; i < 2; ++i) {
-        if(arraySequence->Get(i)!=i+1) m = false;
-    }
-    isAllRight(m);
-}
-
 void arraySequenceTestAll(){
     cout<<"InsertAt: ";
     arraySequenceTestInsertAt();
@@ -135,8 +120,6 @@ void arraySequenceTestAll(){
     arraySequenceTestPrepend();
     cout<<"Append: ";
     arraySequenceTestAppend();
-    cout<<"DeleteElements: ";
-    arraySequenceTestDeleteElements();
 }
 
 int main(){

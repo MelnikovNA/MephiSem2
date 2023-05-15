@@ -80,21 +80,6 @@ public:
         return data->GetSize();
     }
 
-    void DeleteAt(int index)
-    {
-        if(index<1, index>GetLength()) throw IndexOutOfRangeException(Invalid);
-        int len = GetLength();
-        T *a = new T[GetLength()-1];
-        int i = 0;
-        for (; i < index-1; ++i) {
-            a[i] = Get(i);
-        }
-        for (; i < GetLength(); ++i) {
-            a[i-1] = Get(i);
-        }
-        data = new DynamicArray<T>(a, len-1);
-    }
-
     void Set(int index, T value) override
     {
         data->Set(index, value);
