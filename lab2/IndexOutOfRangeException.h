@@ -9,10 +9,10 @@
 typedef enum {
     Empty,
     Invalid,
-} Code;
+} ErrCode;
 
 class IndexOutOfRangeException{
-    Code error;
+    ErrCode error;
     const char* text[2] = {"Sequence is empty", "Sequence doesn't have element with that index"};
 
 public:
@@ -20,7 +20,7 @@ public:
     {
         std::cout << text[(int) error] << std::endl;
     }
-    IndexOutOfRangeException(Code er) : error(er) {};
+    IndexOutOfRangeException(ErrCode er) : error(er) {};
 };
 
 #endif //LAB2_INDEXOUTOFRANGEEXCEPTION_H

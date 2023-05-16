@@ -51,17 +51,9 @@ public:
     };
 
     void Set(int index, T value){
-        try
-        {
-            if (size == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (index < 0 || index > size)
-                throw IndexOutOfRangeException(Invalid);
+            if (size == 0) throw IndexOutOfRangeException(Empty);
+            if (index < 0 || index > size) throw IndexOutOfRangeException(Invalid);
             data[index] = value;
-        } catch (IndexOutOfRangeException& e)
-        {
-            e.printError();
-        }
     }
 
     void Resize(int newSize){
@@ -94,49 +86,26 @@ public:
     int GetSize(){return this->size;};
 
     T Get(int index){
-        try
-        {
-            if (size == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (index >= size || index < 0)
-                throw IndexOutOfRangeException(Invalid);
+            if (size == 0) throw IndexOutOfRangeException(Empty);
+            if (index >= size || index < 0) throw IndexOutOfRangeException(Invalid);
             return this->data[index];
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-            return NULL;
-        }
     };
 
     DynamicArray<T>* GetSubAr(int startIndex, int fin){
-        try{
-            if (startIndex < 0 || startIndex >= size || fin >= size || fin < 0 || startIndex > fin)
-                throw IndexOutOfRangeException(Invalid);
+            if (startIndex < 0 || startIndex >= size || fin >= size || fin < 0 || startIndex > fin) throw IndexOutOfRangeException(Invalid);
             T* ar = new T[fin - startIndex + 1];
-            for (int i = startIndex; i <= fin; i++)
-            {
+            for (int i = startIndex; i <= fin; i++){
                 ar[i - startIndex] = data[i];
             }
             DynamicArray<T>* retval = new DynamicArray<T>(ar, fin - startIndex + 1);
             delete[] ar;
             return retval;
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-            return NULL;
-        }
     }
 
     T operator[](const int i){
-        try
-        {
-            if (size == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (i < 0 || i >= size)
-                throw IndexOutOfRangeException(Invalid);
+            if (size == 0) throw IndexOutOfRangeException(Empty);
+            if (i < 0 || i >= size) throw IndexOutOfRangeException(Invalid);
             return this->data[i];
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-            return NULL;
-        }
     };
 
     friend ostream& operator<<(ostream &out, DynamicArray dynamicData){
