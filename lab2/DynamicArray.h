@@ -70,12 +70,10 @@ public:
 
     DynamicArray<T>* Concat(DynamicArray<T>& lst){
         T* newData = new T[this->size + lst.getSize() + 1];
-        for (int i = 0; i < this->size; i++)
-        {
+        for (int i = 0; i < this->size; i++){
             newData[i] = this->data[i];
         }
-        for (int i = 0; i < lst.getSize(); i++)
-        {
+        for (int i = 0; i < lst.getSize(); i++){
             newData[i + this->size] = lst.get(i);
         }
         DynamicArray<T>* nw = new DynamicArray(newData, this->size + lst.getSize() + 1);
