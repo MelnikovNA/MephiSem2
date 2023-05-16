@@ -13,7 +13,7 @@ typedef enum {
 
 class IndexOutOfRangeException{
     ErrCode error;
-    const char* text[2] = {"Sequence is empty", "Sequence doesn't have element with that index"};
+    const char* text[2] = {"Is empty", "Doesn't have element with that index"};
 
 public:
     void printError()
