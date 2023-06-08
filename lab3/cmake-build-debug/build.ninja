@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: lab3
+# Project: laba2
 # Configurations: Debug
 # =============================================================================
 
@@ -55,24 +55,6 @@ build CMakeFiles/lab3.dir/main.cpp.obj: CXX_COMPILER__lab3_Debug C$:/Cprog/Mephi
   OBJECT_DIR = CMakeFiles\lab3.dir
   OBJECT_FILE_DIR = CMakeFiles\lab3.dir
 
-build CMakeFiles/lab3.dir/Vectest.cpp.obj: CXX_COMPILER__lab3_Debug C$:/Cprog/MephiSem2/lab3/Vectest.cpp || cmake_object_order_depends_target_lab3
-  DEP_FILE = CMakeFiles\lab3.dir\Vectest.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\lab3.dir
-  OBJECT_FILE_DIR = CMakeFiles\lab3.dir
-
-build CMakeFiles/lab3.dir/vecfunc.cpp.obj: CXX_COMPILER__lab3_Debug C$:/Cprog/MephiSem2/lab3/vecfunc.cpp || cmake_object_order_depends_target_lab3
-  DEP_FILE = CMakeFiles\lab3.dir\vecfunc.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\lab3.dir
-  OBJECT_FILE_DIR = CMakeFiles\lab3.dir
-
-build CMakeFiles/lab3.dir/SupInstruments.cpp.obj: CXX_COMPILER__lab3_Debug C$:/Cprog/MephiSem2/lab3/SupInstruments.cpp || cmake_object_order_depends_target_lab3
-  DEP_FILE = CMakeFiles\lab3.dir\SupInstruments.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\lab3.dir
-  OBJECT_FILE_DIR = CMakeFiles\lab3.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab3
@@ -81,7 +63,7 @@ build CMakeFiles/lab3.dir/SupInstruments.cpp.obj: CXX_COMPILER__lab3_Debug C$:/C
 #############################################
 # Link the executable lab3.exe
 
-build lab3.exe: CXX_EXECUTABLE_LINKER__lab3_Debug CMakeFiles/lab3.dir/main.cpp.obj CMakeFiles/lab3.dir/Vectest.cpp.obj CMakeFiles/lab3.dir/vecfunc.cpp.obj CMakeFiles/lab3.dir/SupInstruments.cpp.obj
+build lab3.exe: CXX_EXECUTABLE_LINKER__lab3_Debug CMakeFiles/lab3.dir/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab3.dir
@@ -90,39 +72,6 @@ build lab3.exe: CXX_EXECUTABLE_LINKER__lab3_Debug CMakeFiles/lab3.dir/main.cpp.o
   TARGET_FILE = lab3.exe
   TARGET_IMPLIB = liblab3.dll.a
   TARGET_PDB = lab3.exe.dbg
-
-# =============================================================================
-# Object build statements for EXECUTABLE target vectest
-
-
-#############################################
-# Order-only phony target for vectest
-
-build cmake_object_order_depends_target_vectest: phony || CMakeFiles/vectest.dir
-
-build CMakeFiles/vectest.dir/Vectest.cpp.obj: CXX_COMPILER__vectest_Debug C$:/Cprog/MephiSem2/lab3/Vectest.cpp || cmake_object_order_depends_target_vectest
-  DEP_FILE = CMakeFiles\vectest.dir\Vectest.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\vectest.dir
-  OBJECT_FILE_DIR = CMakeFiles\vectest.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target vectest
-
-
-#############################################
-# Link the executable vectest.exe
-
-build vectest.exe: CXX_EXECUTABLE_LINKER__vectest_Debug CMakeFiles/vectest.dir/Vectest.cpp.obj
-  FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\vectest.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = vectest.exe
-  TARGET_IMPLIB = libvectest.dll.a
-  TARGET_PDB = vectest.exe.dbg
 
 
 #############################################
@@ -152,8 +101,6 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build lab3: phony lab3.exe
 
-build vectest: phony vectest.exe
-
 # =============================================================================
 # Folder targets.
 
@@ -162,7 +109,7 @@ build vectest: phony vectest.exe
 #############################################
 # Folder: C:/Cprog/MephiSem2/lab3/cmake-build-debug
 
-build all: phony lab3.exe vectest.exe
+build all: phony lab3.exe
 
 # =============================================================================
 # Built-in targets

@@ -5,157 +5,170 @@
 #ifndef LAB2_LINKEDLIST_H
 #define LAB2_LINKEDLIST_H
 
-#include <iostream>
 #include "IndexOutOfRangeException.h"
+#include <iostream>
 
-using namespace std;
+ template <class T>
+ class Element{
+ public:
+     T data;
+     Element<T> *next;
+     Element<T> *prev;
+ };
 
-template<class T>
-class Element{
-public:
-    T data;
-    Element<T> *next;
-    Element<T>*prev;
-};
+ template <class T>
+ class LinkedList{
+ private:
+     int len = 0;
 
-template<class T>
-class LinkedList{
-private:
-    int len =0;
-    Element<T> *head = nullptr;
-    Element<T>*end = nullptr;
+     Element<T> *head = nullptr;
+     Element<T> *end = nullptr;
+ public:
+     void Prepend(T item){
+         Element<T> *element1 = new Element<T>;
+         element1->data = item;
+         element1->next = nullptr;
+         element1->prev = nullptr;
+         len++;
+         if (head == nullptr){
+             head = element1;
+             end = element1;
+             return;
+         }
+         element1->next = head;
+         head = element1;
+     }
 
-public:
+     void Append(T item){
+         Element<T> *element1 = new Element<T>;
+         element1->data = item;
+         element1->next = nullptr;
+         element1->prev = end;
 
-    LinkedList(){
-        len = 0;
-        head = nullptr;
-        end = nullptr;
-    };
+         len++;
 
-    void Prepend(T *item){
-        Element<T> *elem = new Element<T>;
-        elem->data=item;
-        elem->next = nullptr;
-        elem->prev = nullptr;
-        len++;
-        if(head== nullptr){
-            head=elem;
-            end = elem;
-            return;
-        };
-        elem->next = head;
-        head = elem;
-    };
+         if (head == nullptr){
+             head = element1;
+             end = element1;
+             return;
+         }
 
-    void Append(T item){
-        Element<T> *elem = new Element<T>;
-        elem->data = item;
-        elem->next= nullptr;
-        elem->prev=end;
-        len++;
-        if(head == nullptr){
-            head = elem;
-            end = elem;
-            return;
-        };
-        end->next=elem;
-        end = elem;
-    };
+         end->next = element1;
+         end = element1;
+     }
 
+     LinkedList (T* items, int count){
+         for (int i = 0; i < count; ++i) {
+             Append(items[i]);
+         }
+     }
 
-    LinkedList(T *items, int count){
-        for(int i =0; i<count;i++) Append(items[i]);
-    };
+     LinkedList (){
+     }
 
-    LinkedList(const LinkedList<T> &list){
-        Element<T>*elem = list.head;
-        for(int i =0; i<list.len;i++){
-            Append(elem->data);
-            elem=elem->next;
-        };
-    };
+     ~LinkedList(){
+         Element<T> *element = head;
+         Element<T> *element1 = head;
+         while (element){
+             element1 = element;
+             element = element->next;
+             delete element1;
+         }
+     }
 
-    ~LinkedList(){
-        Element<T>*elem = head;
-        if(elem!=NULL){
-            while (elem!=NULL){
-                Element<T> * elem2 = elem->next;
-                delete elem;
-                elem = elem2;
-            }
-            delete elem;
-        }
-    };
+     LinkedList (const LinkedList <T> & list){
+         Element<T> *element1 = list.head;
+         for (int i = 0; i < list.len; ++i) {
+             Append(element1->data);
+             element1 = element1->next;
+         }
+     }
 
-    T GetFirst(){
-        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
-        return head->data;
-    };
+     Element<T> *GetElement(int index){
+         if(head == nullptr) throw IndexOutOfRange();
+         if (index>len-1||index<0) throw IndexOutOfRange();
+         Element<T> *element1 = new Element<T>;
+         element1 = head;
+         for (int i = 0; i < index; ++i) {
+             element1 = element1->next;
+         }
+         return element1;
+     }
 
-    T GetLast(){
-        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
-        return end->data;
-    };
+     T GetFirst(){
+         if(head == nullptr) throw IndexOutOfRange();
+         return head->data;
+     }
 
-    T Get(int index){
-        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
-        if(index>len-1||index<0) throw IndexOutOfRangeException(Invalid);
-        Element<T> *elem = new Element<T>;
-        elem = head;
-        for(int i =0; i< index;i++){
-            elem=elem->next;
-        }
-        return elem->data;
-    }
+     T GetLast(){
+         if(head == nullptr) throw IndexOutOfRange();
+         return end->data;
+     }
 
-    LinkedList<T>* GetSubList(int startIndex, int endIndex){
-        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
-        if(endIndex>len-1||startIndex>len-1||startIndex<0||endIndex<0||startIndex==endIndex)throw IndexOutOfRangeException(Invalid);
-        if(startIndex>endIndex){
-            int a = startIndex;
-            startIndex = endIndex;
-            endIndex = a;
-        };
-       Element<T> *elem = new Element<T>;
-       elem = head;
-       for(int i =0; i<startIndex;i++){
-           elem=elem->next;
-       };
-       LinkedList<T> *list = new LinkedList<T>;
-       for(int i =0;i < endIndex-startIndex; i++){
-           list->Append(elem->data);
-           elem=elem->next;
-       };
-       list->end = elem;
-        return list;
-    };
+     T Get(int index){
+         if(head == nullptr) throw IndexOutOfRange();
+         if (index>len-1||index<0) throw IndexOutOfRange();
+         Element<T> *element1 = new Element<T>;
+         element1 = head;
+         for (int i = 0; i < index; ++i) {
+             element1 = element1->next;
+         }
+         return element1->data;
+     }
 
-    int GetLenght(){return  len;};
+     LinkedList<T> *GetSubList(int startIndex, int endIndex){
+         if(head == nullptr)
+             throw IndexOutOfRange();
+         if(endIndex>len-1||startIndex>len-1||startIndex<0||endIndex<0||startIndex==endIndex)
+             throw IndexOutOfRange();
+         if(startIndex>endIndex){
+             int a = startIndex;
+             startIndex = endIndex;
+             endIndex = a;
+         }
+         Element<T> *element1 = new Element<T>;
+         element1 = head;
+         for (int i = 0; i < startIndex; ++i) {
+             element1 = element1->next;
+         }
+         LinkedList<T> *list = new LinkedList<T>;
+         for (int i = 0; i < endIndex-startIndex; ++i) {
+             list->Append(element1->data);
+             element1 = element1->next;
+         }
+         list->end = element1;
+         return list;
+     }
 
-    void InsertAt(T item, int index){
-        if(head== nullptr)throw IndexOutOfRangeException(Invalid);
-        if(index>len-1||index<0) throw IndexOutOfRangeException(Invalid);
-        Element<T> *elem = new Element<T>;
-        elem = head;
-        for(int i =0; i<index;i++){
-            elem = elem->next;
-        };
-        Element<T>* elem2 = new Element<T>;
-        elem2->data=item;
-        elem2->next=elem->next->next;
-        elem->next=elem2;
-    }
+     int GetLength(){
+         return len;
+     }
 
-    LinkedList<T>* Concat(LinkedList<T> *list){
-        LinkedList<T>*linkedList = new LinkedList<T>;
-        linkedList->head = head;
-        linkedList->end = end;
-        linkedList->end->next = list->head;
-        linkedList->end = list->end;
-        len = len+list->len;
-        return linkedList;
-    }
-};
+     void InsertAt(T item, int index){
+         if(head == nullptr)
+             throw IndexOutOfRange();
+         if (index>len-1||index<0)
+             throw IndexOutOfRange();
+         Element<T> *element1 = new Element<T>;
+         element1 = head;
+         for (int i = 0; i < index; ++i) {
+             element1 = element1->next;
+         }
+         Element<T> *element2 = new Element<T>;
+         element2->data = item;
+         element2->next = element1->next->next;
+         element1->next = element2;
+     }
+
+     LinkedList<T>* Concat(LinkedList<T> *list){
+         LinkedList<T> *linkedList = new LinkedList<T>;
+         linkedList->head = head;
+         linkedList->end = end;
+         linkedList->end->next = list->head;
+         linkedList->end = list->end;
+         len = len + list->len;
+         return linkedList;
+     }
+ };
 
 #endif //LAB2_LINKEDLIST_H

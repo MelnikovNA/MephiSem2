@@ -1,6 +1,8 @@
 #include <iostream>
+#include "test.h"
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    matrixTests();
     return 0;
 }

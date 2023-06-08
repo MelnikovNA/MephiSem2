@@ -1,200 +1,93 @@
-//
-// Created by Stif on 21.04.2023.
-//
+#ifndef LAB_2_DYNAMICARRAY_H
+#define LAB_2_DYNAMICARRAY_H
 
-#ifndef LAB2_DYNAMICARRAY_H
-#define LAB2_DYNAMICARRAY_H
-
+#include <string>
 #include <iostream>
+#include "cstring"
 #include "IndexOutOfRangeException.h"
-#define SIZE 5
-using namespace std;
+
 
 template <class T>
-class DynamicArray
-{
-    int sizeAr = 0;
-    int capacity = 0;
-    T* data;
+class DynamicArray {
+private:
+    T *array;
+    int length;
+    size_t sizeOfElement = sizeof(T);
 public:
-    T operator[](const int i){
-        try
-        {
-            if (sizeAr == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (i < 0 || i >= sizeAr)
-                throw IndexOutOfRangeException(Invalid);
-            return this->data[i];
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-            return NULL;
-        }
-    };
-
-    DynamicArray(T* items, int count) : sizeAr(count){
-        capacity = (count % SIZE == 0) ? SIZE * (count / SIZE) : SIZE * (count / SIZE + 1);
-        this->data = new T[capacity];
-        for (int i = 0; i < count; i++)
-        {
-            this->data[i] = items[i];
-        }
-    };
-
-    DynamicArray(int size) : capacity(size){
-        this->data = new T[size];
-    };
-
     DynamicArray(){
-        this->data = NULL;
-        this->sizeAr = 0;
-    };
+        length = 0;
+        array = nullptr;
+    }
 
-    DynamicArray(DynamicArray<T>& dynamicArray) : sizeAr(dynamicArray.sizeAr){
-        capacity = (sizeAr % SIZE == 0) ? SIZE * (sizeAr / SIZE) : SIZE * (sizeAr / SIZE + 1);
-        this->data = new T[capacity];
-        for (int i = 0; i < this->sizeAr; i++)
-        {
-            this->data[i] = dynamicArray.get(i);
+    DynamicArray(T* items, int count) {
+        length = 0;
+        if(count>0){
+            array = new T[count];
+            for(; length<count; length++){
+                array[length] = items[length];
+            }
         }
-    };
+    }
 
-    ~DynamicArray(){
-        if(data != NULL)
-            delete [] data;
-    };
+//    ~DynamicArray(){
+//        delete array;
+//    }
 
-    void Set(int index, T value){
-        try
-        {
-            if (sizeAr == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (index < 0 || index > sizeAr)
-                throw IndexOutOfRangeException(Invalid);
-            data[index] = value;
-        } catch (IndexOutOfRangeException& e)
-        {
-            e.printError();
+    DynamicArray(int size) {
+        length = size;
+        array = new T[size];
+        for(int i = 0; i<size; i++)
+            array[i] = 0;
+    }
+
+    DynamicArray(const DynamicArray<T> &dynamicArray) {
+        length = 0;
+        array = new T[dynamicArray.length];
+        for(; length<dynamicArray.length; length++){
+            array[length] = dynamicArray.array[length];
         }
+    }
+
+    T Get(int index) {
+        if(index>length||index<0)
+            throw IndexOutOfRange();
+        return array[index];
+    }
+
+    void Set(int index, T value) {
+        if(index>length||index<0) throw IndexOutOfRange();
+        array[index] = value;
     }
 
     void Resize(int newSize){
-        capacity = (newSize % SIZE == 0) ? SIZE * (newSize / SIZE) : SIZE * (newSize / SIZE + 1);
-        T* newData = new T[capacity];
-        for (int i = 0; i < (newSize > sizeAr ? sizeAr : newSize); i++)
-        {
-            newData[i] = data[i];
+        T *newArr = new T[newSize];
+        if(array == nullptr){
+            for (int i = 0; i < newSize; ++i) {
+                newArr[i] = 0;
+            }
+        }else {
+            for (int i = 0; i < newSize; ++i) {
+                newArr[i] = array[i % length];
+            }
         }
-        delete data;
-        data = newData;
-        sizeAr = newSize;
+        length = newSize;
+        delete[] array;
+        array = newArr;
     }
 
-    DynamicArray<T>* Concat(DynamicArray<T>& lst){
-        T* newData = new T[this->sizeAr + lst.getSize() + 1];
-        for (int i = 0; i < this->sizeAr; i++)
-        {
-            newData[i] = this->data[i];
-        }
-        for (int i = 0; i < lst.getSize(); i++)
-        {
-            newData[i + this->sizeAr] = lst.get(i);
-        }
-        DynamicArray<T>* nw = new DynamicArray(newData, this->sizeAr + lst.getSize() + 1);
-        delete[] newData;
-        return nw;
-    };
-
-    int GetSize(){return this->sizeAr;};
-
-    T Get(int index){
-        try
-        {
-            if (sizeAr == 0)
-                throw IndexOutOfRangeException(Empty);
-            if (index >= sizeAr || index < 0)
-                throw IndexOutOfRangeException(Invalid);
-            return this->data[index];
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-            return NULL;
-        }
-    };
-
-    DynamicArray<T>* GetSubAr(int startIndex, int fin){
-        try{
-            if (startIndex < 0 || startIndex >= sizeAr || fin >= sizeAr || fin < 0 || startIndex > fin)
-                throw IndexOutOfRangeException(Invalid);
-            T* ar = new T[fin - startIndex + 1];
-            for (int i = startIndex; i <= fin; i++)
-            {
-                ar[i - startIndex] = data[i];
-            }
-            DynamicArray<T>* retval = new DynamicArray<T>(ar, fin - startIndex + 1);
-            delete[] ar;
-            return retval;
-        } catch (IndexOutOfRangeException& e) {
-            e.printError();
-            return NULL;
-        }
+    int GetLength() {
+        return length;
     }
 
-    void Append(T item)
-    {
-        if (capacity <= sizeAr + 1)
-        {
-            capacity += SIZE;
-            T* temp = new T[capacity];
-            temp[this->sizeAr] = item;
-            for (int i = 0; i < this->sizeAr; i++)
-            {
-                temp[i] = this->data[i];
-            }
-            delete this->data;
-            this->data = temp;
-            (this->sizeAr)++;
+    friend std::ostream& operator<<(std::ostream &out, DynamicArray dynamicArray){
+        out<<""<<std::endl;
+        for (int i = 0; i < dynamicArray.length; ++i) {
+            out<<dynamicArray.Get(i);
         }
-        else
-        {
-            data[this->sizeAr] = item;
-            (this->sizeAr)++;
-        }
-    };
-
-    void prepend(T item)
-    {
-        if (capacity == sizeAr + 1)
-        {
-            capacity += SIZE;
-            T* temp = new T[capacity];
-            temp[0] = item;
-            for (int i = 0; i < this->sizeAr; i++)
-            {
-                temp[i + 1] = this->data[i];
-            }
-            delete this->data;
-            this->data = temp;
-            (this->sizeAr)++;
-        }
-        else
-        {
-            for (int i = sizeAr; i > 0; i--)
-            {
-                data[i] = data[i - 1];
-            }
-            data[0] = item;
-            sizeAr++;
-        }
-    };
-
-    friend ostream& operator<<(ostream &out, DynamicArray dynamicData){
-        out<<""<<endl;
-        for(int i =0; i< dynamicData.size;i++){
-            out<<dynamicData.Get(i);
-        }
-        out<<""<<endl;
+        out<<""<<std::endl;
         return out;
     }
-
 };
 
-#endif //LAB2_DYNAMICARRAY_H
+
+#endif //LAB_2_DYNAMICARRAY_H
