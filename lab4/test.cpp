@@ -2,13 +2,11 @@
 // Created by Stif on 12.06.2023.
 //
 
-#include "test.h"
 #ifndef UNTITLED9_TESTS_H
 #define UNTITLED9_TESTS_H
 
 #endif
-#include "BinarySearchTree.h"
-
+#include "test.h"
 
 using namespace std;
 
@@ -215,8 +213,4 @@ void tests(int count){
     testBinaryTreeAdd(count);
     testBinaryTreeGetSize(count);
     testBinaryTreeIsEqual(count);
-}
-
-int main(){
-    tests(10);
 }

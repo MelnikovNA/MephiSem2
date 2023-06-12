@@ -4,6 +4,7 @@
 
 #ifndef LAB4_TEST_H
 #define LAB4_TEST_H
+
 #include "BinarySearchTree.h"
 
 
@@ -21,4 +22,4 @@ void testBinaryHeapSubBinaryHeap(int count);
 void testBinaryHeapFindSubBinaryHeap(int count);
 void tests(int count);
 
-#endif
+#endif //LAB4_TEST_H
