@@ -90,8 +90,12 @@ void testMatrixMult(){
 }
 
 void matrixTests(){
+    cout<<"Sum: ";
     testMatrixSum();
+    cout<<"Sub: ";
     testMatrixSub();
+    cout<<"Mult: ";
     testMatrixMult();
+    cout<<"GetElement: ";
     testMatrixGetElement();
 }
